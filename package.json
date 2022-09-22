@@ -1,0 +1,40 @@
+{
+  "name": "paper-minis",
+  "version": "1.0.0",
+  "description": "A tool for choosing creatures to print paper minis for",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "format": "prettier --write \"src/**/*.{js,jsx}\" ",
+    "format:check": "prettier --check \"src/**/*.{js,jsx}\" ",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BryceLTaylor/paper-minis.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BryceLTaylor/paper-minis/issues"
+  },
+  "homepage": "https://github.com/BryceLTaylor/paper-minis#readme",
+  "devDependencies": {
+    "eslint": "^8.23.1",
+    "eslint-config-prettier": "^8.5.0",
+    "parcel": "^2.7.0",
+    "prettier": "^2.7.1",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browserslist": [
+    "last 5 Chrome versiosn",
+    "last 5 Firefox versions",
+    "last 5 Safari versions",
+    "last 5 Edge versions"
+  ]
+}
