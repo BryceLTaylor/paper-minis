@@ -1,0 +1,28 @@
+.tabs {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.browse-tab {
+}
+
+.tab {
+  border: 2px solid black;
+  border-style: solid solid none solid;
+  border-radius: 5px 5px 0px 0px;
+  padding: 2px 5px;
+  width: 75px;
+}
+
+.selected {
+  background-color: white;
+  height: 20px;
+}
+
+.not-selected {
+  background-color: lightgray;
+  height: 15px;
+  position: relative;
+  bottom: -5px;
+}
