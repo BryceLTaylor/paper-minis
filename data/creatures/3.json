@@ -1,0 +1,58 @@
+{
+  "id": 3,
+  "name": "Beholder",
+  "size": "large",
+  "types": ["aberration"],
+  "alignment": "lawful evil",
+  "images": ["beholder1.png"],
+  "description": "a big ball with one large eye and a bunch of eye stalks",
+  "ac": 18,
+  "hp": "180 (19d10 + 76",
+  "speed": {
+    "walking": 0,
+    "fly-hover": 20
+  },
+  "stats": {
+    "str": 10,
+    "dex": 14,
+    "con": 18,
+    "int": 17,
+    "wis": 15,
+    "cha": 17
+  },
+  "skills": ["perception +12"],
+  "damage vulnerabilities": [],
+  "damage resistances": [],
+  "damage immunities": [],
+  "condition immunities": [],
+  "senses": ["darkvision 120ft."],
+  "passive-perception": 22,
+  "languages": ["Deep Speech", "Undercommon"],
+  "challenge": "13",
+  "features": [
+    {
+      "name": "antimagic cone",
+      "description": "The beholder's central eye creates an area of antimagic, as in the antimagic field spell, in a 15o-fot cone.  At the start of each of its turns, the beholder decides which way the cone faces and whether the cone is active.  The area works against the beholders own eye rays."
+    }
+  ],
+  "actions": [
+    {
+      "name": "bite",
+      "description": "Melee weapon attack: +5 to hit, reach 5 ft., one target. Hit: 14 (4d6) piercing damage."
+    },
+    {
+      "name": "eye rays",
+      "description": "this is super long so I'll come back and add it later."
+    }
+  ],
+  "legendary-actions": {
+    "description": "The beholder can take 3 legendary actions, using the Eye Ray option below.  It can take only one legendary action at a time and only at the end of another creature's turn.  The beholder regains spent legendary actions at the start of its turn.",
+    "legendary-actions": [
+      {
+        "name": "eye ray",
+        "description": "The beholder uses one random eye ray."
+      }
+    ]
+  },
+  "reactions": []
+}

@@ -1,0 +1,333 @@
+{
+  "creatures": [
+    {
+      "id": 1,
+      "name": "kobold",
+      "size": "small",
+      "types": ["humanoid", "kobold"],
+      "alignment": "lawful evil",
+      "images": ["kobold1.png"],
+      "description": "Small crafty creatures.",
+      "ac": 12,
+      "hp": "5 (2d6 - 2)",
+      "speed": {
+        "walking": 30
+      },
+      "stats": {
+        "str": 7,
+        "dex": 15,
+        "con": 9,
+        "int": 8,
+        "wis": 7,
+        "cha": 8
+      },
+      "skills": [],
+      "damage vulnerabilities": [],
+      "damage resistances": [],
+      "damage immunities": [],
+      "condition immunities": [],
+      "senses": ["darkvision 60ft"],
+      "passive-perception": 8,
+      "languages": ["common", "draconic"],
+      "challenge": "1/8",
+      "features": [
+        {
+          "name": "Sunlight Sensitivity",
+          "description": "While in sunlight, the kobold has disadvnantage on attack rolls, as well as on Wisdom(Perception) checks that rely on sight."
+        },
+        {
+          "name": "Pack Tactics",
+          "description": "The kobold has advantage on an attack roll against a creature if at least one of the kobold's allies is within 5 feet of the creature and the ally isn't incapacitated."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Dagger",
+          "description": "Melee Weapon Attack: +4 to hit, reach 5ft., one target. Hit: 4 (1d4 + 2) piercing damage."
+        },
+        {
+          "name": "Sling",
+          "description": "Ranged Weapon Attack: +4 to hit, range 30/120 ft., one target. Hit: 4 (1d4 + 2) bludgeoning damage."
+        }
+      ],
+      "legendary-actions": { "description": "none", "legendary-actions": [] },
+      "reactions": []
+    },
+    {
+      "id": 2,
+      "name": "wolf",
+      "size": "medium",
+      "types": ["beast"],
+      "alignment": "unaligned",
+      "images": ["wolf1.png"],
+      "description": "Wild creatures creatures.",
+      "ac": 13,
+      "hp": "11 (2d8 + 2)",
+      "speed": {
+        "walking": 40
+      },
+      "stats": {
+        "str": 12,
+        "dex": 15,
+        "con": 12,
+        "int": 3,
+        "wis": 12,
+        "cha": 6
+      },
+      "skills": ["perception +3", "Stealth +4"],
+      "damage vulnerabilities": [],
+      "damage resistances": [],
+      "damage immunities": [],
+      "condition immunities": [],
+      "senses": [],
+      "passive-perception": 13,
+      "languages": [],
+      "challenge": "1/4",
+      "features": [
+        {
+          "name": "Keen Hearing and Smell ",
+          "description": "The wolf has advantage on Wisdom(Perception) checks that rely on hearing or smell."
+        },
+        {
+          "name": "Pack Tactics",
+          "description": "The wolf has advantage on an attack roll against a creature if at least one of the wolf's allies is within 5 feet of the creature and the ally isn't incapacitated."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "Melee Weapon Attack: +4 to hit, reach 5ft., one target. Hit: 7 (2d4 + 2) piercing damage.  If the target is a creature, it must succeed on a DC 11 Strength saving throw or be knocked prone."
+        }
+      ],
+      "legendary-actions": { "description": "none", "legendary-actions": [] },
+      "reactions": []
+    },
+    {
+      "id": 3,
+      "name": "Beholder",
+      "size": "large",
+      "types": ["aberration"],
+      "alignment": "lawful evil",
+      "images": ["beholder1.png"],
+      "description": "a big ball with one large eye and a bunch of eye stalks",
+      "ac": 18,
+      "hp": "180 (19d10 + 76",
+      "speed": {
+        "walking": 0,
+        "fly-hover": 20
+      },
+      "stats": {
+        "str": 10,
+        "dex": 14,
+        "con": 18,
+        "int": 17,
+        "wis": 15,
+        "cha": 17
+      },
+      "skills": ["perception +12"],
+      "damage vulnerabilities": [],
+      "damage resistances": [],
+      "damage immunities": [],
+      "condition immunities": [],
+      "senses": ["darkvision 120ft."],
+      "passive-perception": 22,
+      "languages": ["Deep Speech", "Undercommon"],
+      "challenge": "13",
+      "features": [
+        {
+          "name": "antimagic cone",
+          "description": "The beholder's central eye creates an area of antimagic, as in the antimagic field spell, in a 15o-fot cone.  At the start of each of its turns, the beholder decides which way the cone faces and whether the cone is active.  The area works against the beholders own eye rays."
+        }
+      ],
+      "actions": [
+        {
+          "name": "bite",
+          "description": "Melee weapon attack: +5 to hit, reach 5 ft., one target. Hit: 14 (4d6) piercing damage."
+        },
+        {
+          "name": "eye rays",
+          "description": "this is super long so I'll come back and add it later."
+        }
+      ],
+      "legendary-actions": {
+        "description": "The beholder can take 3 legendary actions, using the Eye Ray option below.  It can take only one legendary action at a time and only at the end of another creature's turn.  The beholder regains spent legendary actions at the start of its turn.",
+        "legendary-actions": [
+          {
+            "name": "eye ray",
+            "description": "The beholder uses one random eye ray."
+          }
+        ]
+      },
+      "reactions": []
+    },
+    {
+      "id": 4,
+      "name": "Young Red Dragon",
+      "size": "large",
+      "types": ["dragon"],
+      "alignment": "chaotic evil",
+      "images": ["youngRedDragon1.png"],
+      "description": "A dragon.  It's red and not as big as other dragons",
+      "ac": 18,
+      "hp": "178 (17d10 + 85)",
+      "speed": {
+        "walking": 40,
+        "climb": 40,
+        "fly": 80
+      },
+      "stats": {
+        "str": 23,
+        "dex": 10,
+        "con": 21,
+        "int": 14,
+        "wis": 11,
+        "cha": 19
+      },
+      "skills": ["perception +8", "Stealth +4"],
+      "damage vulnerabilities": [],
+      "damage resistances": [],
+      "damage immunities": ["fire"],
+      "condition immunities": [],
+      "senses": ["blindsight 30ft.", "darkvision 120ft."],
+      "passive-perception": 18,
+      "languages": ["common", "draconic"],
+      "challenge": "10",
+      "features": [],
+      "actions": [
+        {
+          "name": "multiattack",
+          "description": "The dragon makes three attacks: one with its bite and two with its claws"
+        },
+        {
+          "name": "bite",
+          "description": "Melee weapon attack: +10 to hit, reach 10ft., one target.  Hit: 17 (2d10 + 6) piercing damage plus 3 (1d6) fire damage."
+        },
+        {
+          "name": "claw",
+          "description": "Melee weapon attack: +10 to hit, reach 5ft., one target.  Hit: 13 (2d6 + 6) slashing damage."
+        },
+        {
+          "name": "Fire Breath (Recharge 5-6)",
+          "description": "the dragon exhales fire in a 30-fot cone.  Each creature in that area must make a DC 17 Dexterity saving throw, taking 56 (16d6 fire damage on a failed save, or half as much damage on a successful one."
+        }
+      ],
+      "legendary-actions": { "description": "none", "legendary-actions": [] },
+      "reactions": []
+    },
+    {
+      "id": 5,
+      "name": "minotaur",
+      "size": "large",
+      "types": ["monstrosity"],
+      "alignment": "chaotic evil",
+      "images": ["minotaur1.png"],
+      "description": "a big creature wtih a human's body and a bull's head",
+      "ac": 14,
+      "hp": "76 (9d10 + 27)",
+      "speed": {
+        "walking": 40
+      },
+      "stats": {
+        "str": 18,
+        "dex": 11,
+        "con": 16,
+        "int": 6,
+        "wis": 16,
+        "cha": 9
+      },
+      "skills": ["perception +7"],
+      "damage vulnerabilities": [],
+      "damage resistances": [],
+      "damage immunities": [],
+      "condition immunities": [],
+      "senses": ["darkvision 60ft"],
+      "passive-perception": 17,
+      "languages": ["abyssal"],
+      "challenge": "3",
+      "features": [
+        {
+          "name": "charge",
+          "description": "If the minotaur moves at least 10 feet straight towards a target and then hits it with a gore attack on the same turn, the target takes an extra 9 (2d8) piercing damage. If the target is a creature, it must succeed on a dc 14 strength saving throw or be pused up to 10 feet away and be knocked prone."
+        },
+        {
+          "name": "labyrinthine recall",
+          "description": "The minotaur can perfectly recall any path it has traveled"
+        },
+        {
+          "name": "reckless",
+          "description": "At the start of its turn, the minotaur can gain advantage on all melee weapon attack rolls it makes during that turn, but attack rolls against it have advantage until the start of its next turn."
+        }
+      ],
+      "actions": [
+        {
+          "name": "greataxe",
+          "description": "Melee weapon attack: +6 to hit, reach 5 ft., one target.  Hit: 17 (2d12+4) slashing damage."
+        },
+        {
+          "name": "gore",
+          "description": "Melee weapon attack: +6 to hit, reach 5 ft., one target.  Hit: 13 (2d8 + 4) piercing damage."
+        }
+      ],
+      "legendary-actions": { "description": "none", "legendary-actions": [] },
+      "reactions": []
+    },
+    {
+      "id": 6,
+      "name": "umber hulk",
+      "size": "large",
+      "types": ["monstrosity"],
+      "alignment": "chaotic evil",
+      "images": ["umberHulk1.png"],
+      "description": "A big buglike human shaped monster.",
+      "ac": 18,
+      "hp": "93 (11d10 + 33",
+      "speed": {
+        "walking": 30,
+        "burrow": 20
+      },
+      "stats": {
+        "str": 20,
+        "dex": 13,
+        "con": 16,
+        "int": 9,
+        "wis": 10,
+        "cha": 10
+      },
+      "skills": [],
+      "damage vulnerabilities": [],
+      "damage resistances": [],
+      "damage immunities": [],
+      "condition immunities": [],
+      "senses": ["darkvision 120ft.", "tremorsense 60ft."],
+      "passive-perception": 10,
+      "languages": ["umber hulk"],
+      "challenge": "5",
+      "features": [
+        {
+          "name": "confusing gaze",
+          "description": "fill this in later"
+        },
+        {
+          "name": "tunneler",
+          "description": "fill this in later, please"
+        }
+      ],
+      "actions": [
+        {
+          "name": "multiattack",
+          "description": "The umber hulk makes three attacks: two with its claws and one with its mandibles."
+        },
+        {
+          "name": "claw",
+          "description": "Melee weapon attack: +8 to hit, reach 5ft., one target.  Hit: 9 (1d8 + 5) slashing damage."
+        },
+        {
+          "name": "mandibles",
+          "description": "Melee weapon attack: +8 to hit, reach 5ft., one target.  Hit: 14 (2d8 + 5) slashing damage."
+        }
+      ],
+      "legendary-actions": { "description": "none", "legendary-actions": [] },
+      "reactions": []
+    }
+  ]
+}

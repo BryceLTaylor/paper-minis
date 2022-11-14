@@ -1,0 +1,54 @@
+{
+  "id": 4,
+  "name": "Young Red Dragon",
+  "size": "large",
+  "types": ["dragon"],
+  "alignment": "chaotic evil",
+  "images": ["youngRedDragon1.png"],
+  "description": "A dragon.  It's red and not as big as other dragons",
+  "ac": 18,
+  "hp": "178 (17d10 + 85)",
+  "speed": {
+    "walking": 40,
+    "climb": 40,
+    "fly": 80
+  },
+  "stats": {
+    "str": 23,
+    "dex": 10,
+    "con": 21,
+    "int": 14,
+    "wis": 11,
+    "cha": 19
+  },
+  "skills": ["perception +8", "Stealth +4"],
+  "damage vulnerabilities": [],
+  "damage resistances": [],
+  "damage immunities": ["fire"],
+  "condition immunities": [],
+  "senses": ["blindsight 30ft.", "darkvision 120ft."],
+  "passive-perception": 18,
+  "languages": ["common", "draconic"],
+  "challenge": "10",
+  "features": [],
+  "actions": [
+    {
+      "name": "multiattack",
+      "description": "The dragon makes three attacks: one with its bite and two with its claws"
+    },
+    {
+      "name": "bite",
+      "description": "Melee weapon attack: +10 to hit, reach 10ft., one target.  Hit: 17 (2d10 + 6) piercing damage plus 3 (1d6) fire damage."
+    },
+    {
+      "name": "claw",
+      "description": "Melee weapon attack: +10 to hit, reach 5ft., one target.  Hit: 13 (2d6 + 6) slashing damage."
+    },
+    {
+      "name": "Fire Breath (Recharge 5-6)",
+      "description": "the dragon exhales fire in a 30-fot cone.  Each creature in that area must make a DC 17 Dexterity saving throw, taking 56 (16d6 fire damage on a failed save, or half as much damage on a successful one."
+    }
+  ],
+  "legendary-actions": { "description": "none", "legendary-actions": [] },
+  "reactions": []
+}

@@ -1,0 +1,58 @@
+{
+  "id": 6,
+  "name": "umber hulk",
+  "size": "large",
+  "types": ["monstrosity"],
+  "alignment": "chaotic evil",
+  "images": ["umberHulk1.png"],
+  "description": "A big buglike human shaped monster.",
+  "ac": 18,
+  "hp": "93 (11d10 + 33",
+  "speed": {
+    "walking": 30,
+    "burrow": 20
+  },
+  "stats": {
+    "str": 20,
+    "dex": 13,
+    "con": 16,
+    "int": 9,
+    "wis": 10,
+    "cha": 10
+  },
+  "skills": [],
+  "damage vulnerabilities": [],
+  "damage resistances": [],
+  "damage immunities": [],
+  "condition immunities": [],
+  "senses": ["darkvision 120ft.", "tremorsense 60ft."],
+  "passive-perception": 10,
+  "languages": ["umber hulk"],
+  "challenge": "5",
+  "features": [
+    {
+      "name": "confusing gaze",
+      "description": "fill this in later"
+    },
+    {
+      "name": "tunneler",
+      "description": "fill this in later, please"
+    }
+  ],
+  "actions": [
+    {
+      "name": "multiattack",
+      "description": "The umber hulk makes three attacks: two with its claws and one with its mandibles."
+    },
+    {
+      "name": "claw",
+      "description": "Melee weapon attack: +8 to hit, reach 5ft., one target.  Hit: 9 (1d8 + 5) slashing damage."
+    },
+    {
+      "name": "mandibles",
+      "description": "Melee weapon attack: +8 to hit, reach 5ft., one target.  Hit: 14 (2d8 + 5) slashing damage."
+    }
+  ],
+  "legendary-actions": { "description": "none", "legendary-actions": [] },
+  "reactions": []
+}
