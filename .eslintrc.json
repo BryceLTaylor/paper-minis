@@ -1,6 +1,10 @@
 {
-  "extends": ["eslint:recommended", "prettier"],
-  "plugins": [],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react-hooks/recommended",
+    "prettier"
+  ],
+  "plugins": ["react-hooks"],
   "parserOptions": {
     "ecmaVersion": 2022,
     "sourceType": "module",
