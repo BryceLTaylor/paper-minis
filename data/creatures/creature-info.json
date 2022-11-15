@@ -59,8 +59,8 @@
       "size": "medium",
       "types": ["beast"],
       "alignment": "unaligned",
-      "images": ["wolf1.png"],
-      "description": "Wild creatures creatures.",
+      "images": ["wolf1.jpg"],
+      "description": "Wild creatures.",
       "ac": 13,
       "hp": "11 (2d8 + 2)",
       "speed": {
@@ -104,7 +104,7 @@
     },
     {
       "id": 3,
-      "name": "Beholder",
+      "name": "beholder",
       "size": "large",
       "types": ["aberration"],
       "alignment": "lawful evil",
@@ -162,11 +162,11 @@
     },
     {
       "id": 4,
-      "name": "Young Red Dragon",
+      "name": "young red dragon",
       "size": "large",
       "types": ["dragon"],
       "alignment": "chaotic evil",
-      "images": ["youngRedDragon1.png"],
+      "images": ["youngRedDragon1.jpg"],
       "description": "A dragon.  It's red and not as big as other dragons",
       "ac": 18,
       "hp": "178 (17d10 + 85)",
