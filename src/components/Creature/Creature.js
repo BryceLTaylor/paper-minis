@@ -5,6 +5,7 @@ import { getCreatureJson, getCreatureImageByName } from "../../dataGetter.js";
 import missingImage from "../../../images/missing.png";
 
 import "./Creature.css";
+import Blockstat from "../Blockstat/Blockstat.js";
 
 const Creature = (props) => {
   const [creatureInfo, setCreatureInfo] = useState({
@@ -43,6 +44,11 @@ const Creature = (props) => {
         alt={"picture of " + creatureInfo.name}
         width="100"
       ></img>
+      {creatureInfo.id ? (
+        <Blockstat creatureInfo={creatureInfo} />
+      ) : (
+        <p>loading blockstat</p>
+      )}
     </div>
   );
 };

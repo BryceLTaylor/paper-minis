@@ -1,0 +1,35 @@
+.blockstat {
+  background-color: rgb(220, 220, 185);
+  border-top: 1px double darkred;
+  border-bottom: 1px double darkred;
+  width: 300px;
+  margin: 10px;
+}
+
+.first-line-info {
+  font-size: 10;
+}
+
+hr {
+  color: darkred;
+  margin: 4px 4px;
+}
+
+.normal-info {
+  font-size: 12;
+  color: darkred;
+}
+
+.info-name {
+  font-weight: bold;
+}
+
+.info-value {
+  font-style: italic;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  color: darkred;
+}
