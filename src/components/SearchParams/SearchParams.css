@@ -1,16 +1,16 @@
 .search-params {
   display: flex;
   justify-content: space-around;
-  border: 3px solid black;
+  border: 2px solid black;
   background-color: rgb(230, 230, 230);
 }
 
 .filters {
-  border: 1px solid black;
+  border: 0.5px solid black;
   width: 65%;
 }
 
 .sort-by {
-  border: 1px solid black;
+  border: 0.5px solid black;
   width: 35%;
 }
