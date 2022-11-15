@@ -39,7 +39,7 @@ async function getCreatureJson(creatureId) {
   return creatureObject;
 }
 
-async function getCreatureImage(creatureId) {
+async function getCreatureImageById(creatureId) {
   let image;
   switch (creatureId) {
     case 1:
@@ -68,4 +68,37 @@ async function getCreatureImage(creatureId) {
   return image;
 }
 
-export { getCreatureList, getCreatureJson, getCreatureImage };
+async function getCreatureImageByName(fileName) {
+  let image;
+  switch (fileName) {
+    case "kobold1.png":
+      image = kobold1;
+      break;
+    case "wolf1.jpg":
+      image = wolf1;
+      break;
+    case "beholder1.png":
+      image = beholder1;
+      break;
+    case "youngRedDragon1.jpg":
+      image = youngRedDragon1;
+      break;
+    case "minotaur1.png":
+      image = minotaur1;
+      break;
+    case "umberHulk1.png":
+      image = umberHulk1;
+      break;
+    default:
+      image = missingImage;
+  }
+
+  return image;
+}
+
+export {
+  getCreatureList,
+  getCreatureJson,
+  getCreatureImageById,
+  getCreatureImageByName,
+};

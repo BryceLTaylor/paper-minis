@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-import { getCreatureJson, getCreatureImage } from "../../dataGetter.js";
+import { getCreatureJson, getCreatureImageByName } from "../../dataGetter.js";
 import missingImage from "../../../images/missing.png";
 
 const Creature = (props) => {
@@ -17,8 +17,8 @@ const Creature = (props) => {
   async function getCreatureInfo() {
     console.log("looking for creature info");
     let creatureJSON = await getCreatureJson(props.creatureId);
-    setCreatureInfo(creatureJSON);
-    let creatureImage = await getCreatureImage(props.creatureId);
+    await setCreatureInfo(creatureJSON);
+    let creatureImage = await getCreatureImageByName(creatureInfo.images[0]);
     setCreatureImage(creatureImage);
   }
 
