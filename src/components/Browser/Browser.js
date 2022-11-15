@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import SearchParams from "../SearchParams/SearchParams";
 import Creature from "../Creature/Creature.js";
 
-import getCreatureList from "../../creatureListGenerator.js";
+import { getCreatureList } from "../../creatureListGenerator.js";
 
 import "./Browser.css";
 

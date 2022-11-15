@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
+import { getCreatureJson } from "../../creatureListGenerator.js";
+
 const Creature = (props) => {
   const [creatureInfo, setCreatureInfo] = useState({});
 
@@ -10,13 +12,13 @@ const Creature = (props) => {
 
   async function getCreatureInfo() {
     console.log("looking for creature info");
-    // await fetch(`/data/${props.id}.json`);
-    // await setCreatureInfo(res.json());
+    let creatureJSON = await getCreatureJson(props.creatureId);
+    setCreatureInfo(creatureJSON);
   }
 
   return (
     <div className="creature">
-      <p className="creatureName"> {props.name}</p>
+      <p className="creatureName"> {creatureInfo.name}</p>
     </div>
   );
 };
