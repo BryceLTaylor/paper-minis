@@ -2,7 +2,7 @@
   "creatures": [
     {
       "id": 1,
-      "name": "kobold",
+      "name": "Kobold",
       "size": "small",
       "types": ["humanoid", "kobold"],
       "alignment": "lawful evil",
@@ -57,7 +57,7 @@
     },
     {
       "id": 2,
-      "name": "wolf",
+      "name": "Wolf",
       "size": "medium",
       "types": ["beast"],
       "alignment": "unaligned",
@@ -108,7 +108,7 @@
     },
     {
       "id": 3,
-      "name": "beholder",
+      "name": "Beholder",
       "size": "large",
       "types": ["aberration"],
       "alignment": "lawful evil",
@@ -168,7 +168,7 @@
     },
     {
       "id": 4,
-      "name": "young red dragon",
+      "name": "Young Red Dragon",
       "size": "large",
       "types": ["dragon"],
       "alignment": "chaotic evil",
@@ -224,7 +224,7 @@
     },
     {
       "id": 5,
-      "name": "minotaur",
+      "name": "Minotaur",
       "size": "large",
       "types": ["monstrosity"],
       "alignment": "chaotic evil",
@@ -283,7 +283,7 @@
     },
     {
       "id": 6,
-      "name": "umber hulk",
+      "name": "Umber Hulk",
       "size": "large",
       "types": ["monstrosity"],
       "alignment": "chaotic evil",

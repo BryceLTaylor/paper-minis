@@ -1,6 +1,6 @@
 {
   "id": 1,
-  "name": "kobold",
+  "name": "Kobold",
   "size": "small",
   "types": ["humanoid", "kobold"],
   "alignment": "lawful evil",
