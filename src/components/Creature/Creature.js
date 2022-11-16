@@ -38,17 +38,19 @@ const Creature = (props) => {
 
   return (
     <div className="creature">
-      <p className="creatureName"> {creatureInfo.name}</p>
-      <img
-        src={creatureImage}
-        alt={"picture of " + creatureInfo.name}
-        width="100"
-      ></img>
-      {creatureInfo.id ? (
-        <Blockstat creatureInfo={creatureInfo} />
-      ) : (
-        <p>loading blockstat</p>
-      )}
+      <h1 className="creatureName"> {creatureInfo.name}</h1>
+      <div className="creature-flex">
+        <img
+          src={creatureImage}
+          alt={"picture of " + creatureInfo.name}
+          width="500"
+        ></img>
+        {creatureInfo.id ? (
+          <Blockstat creatureInfo={creatureInfo} />
+        ) : (
+          <p>loading blockstat</p>
+        )}
+      </div>
     </div>
   );
 };

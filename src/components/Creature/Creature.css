@@ -4,3 +4,7 @@
   border-radius: 12px;
   margin: 5px 0px;
 }
+
+.creature-flex {
+  display: flex;
+}
