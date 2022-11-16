@@ -7,6 +7,7 @@
   "images": ["umberHulk1.png"],
   "description": "A big buglike human shaped monster.",
   "ac": 18,
+  "ac type": "(Natural Armor)",
   "hp": "93 (11d10 + 33",
   "speed": {
     "walking": 30,
@@ -20,13 +21,14 @@
     "wis": 10,
     "cha": 10
   },
+  "saving throws": [],
   "skills": [],
   "damage vulnerabilities": [],
   "damage resistances": [],
   "damage immunities": [],
   "condition immunities": [],
   "senses": ["darkvision 120ft.", "tremorsense 60ft."],
-  "passive-perception": 10,
+  "passive perception": 10,
   "languages": ["umber hulk"],
   "challenge": "5",
   "features": [
@@ -53,6 +55,6 @@
       "description": "Melee weapon attack: +8 to hit, reach 5ft., one target.  Hit: 14 (2d8 + 5) slashing damage."
     }
   ],
-  "legendary-actions": { "description": "none", "legendary-actions": [] },
+  "legendary actions": { "description": "none", "legendary actions": [] },
   "reactions": []
 }

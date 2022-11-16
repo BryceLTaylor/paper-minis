@@ -7,6 +7,7 @@
   "images": ["minotaur1.png"],
   "description": "a big creature wtih a human's body and a bull's head",
   "ac": 14,
+  "ac type": "(Natural Armor)",
   "hp": "76 (9d10 + 27)",
   "speed": {
     "walking": 40
@@ -19,13 +20,14 @@
     "wis": 16,
     "cha": 9
   },
+  "saving throws": [],
   "skills": ["perception +7"],
   "damage vulnerabilities": [],
   "damage resistances": [],
   "damage immunities": [],
   "condition immunities": [],
   "senses": ["darkvision 60ft"],
-  "passive-perception": 17,
+  "passive perception": 17,
   "languages": ["abyssal"],
   "challenge": "3",
   "features": [
@@ -52,6 +54,6 @@
       "description": "Melee weapon attack: +6 to hit, reach 5 ft., one target.  Hit: 13 (2d8 + 4) piercing damage."
     }
   ],
-  "legendary-actions": { "description": "none", "legendary-actions": [] },
+  "legendary actions": { "description": "none", "legendary actions": [] },
   "reactions": []
 }

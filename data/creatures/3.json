@@ -7,6 +7,7 @@
   "images": ["beholder1.png"],
   "description": "a big ball with one large eye and a bunch of eye stalks",
   "ac": 18,
+  "ac type": "(Natural Armor)",
   "hp": "180 (19d10 + 76",
   "speed": {
     "walking": 0,
@@ -20,13 +21,14 @@
     "wis": 15,
     "cha": 17
   },
+  "saving throws": [],
   "skills": ["perception +12"],
   "damage vulnerabilities": [],
   "damage resistances": [],
   "damage immunities": [],
   "condition immunities": [],
   "senses": ["darkvision 120ft."],
-  "passive-perception": 22,
+  "passive perception": 22,
   "languages": ["Deep Speech", "Undercommon"],
   "challenge": "13",
   "features": [
@@ -45,9 +47,9 @@
       "description": "this is super long so I'll come back and add it later."
     }
   ],
-  "legendary-actions": {
+  "legendary actions": {
     "description": "The beholder can take 3 legendary actions, using the Eye Ray option below.  It can take only one legendary action at a time and only at the end of another creature's turn.  The beholder regains spent legendary actions at the start of its turn.",
-    "legendary-actions": [
+    "legendary actions": [
       {
         "name": "eye ray",
         "description": "The beholder uses one random eye ray."

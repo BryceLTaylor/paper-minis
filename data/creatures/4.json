@@ -7,6 +7,7 @@
   "images": ["youngRedDragon1.png"],
   "description": "A dragon.  It's red and not as big as other dragons",
   "ac": 18,
+  "ac type": "(Natural Armor)",
   "hp": "178 (17d10 + 85)",
   "speed": {
     "walking": 40,
@@ -21,13 +22,14 @@
     "wis": 11,
     "cha": 19
   },
+  "saving throws": [],
   "skills": ["perception +8", "Stealth +4"],
   "damage vulnerabilities": [],
   "damage resistances": [],
   "damage immunities": ["fire"],
   "condition immunities": [],
   "senses": ["blindsight 30ft.", "darkvision 120ft."],
-  "passive-perception": 18,
+  "passive perception": 18,
   "languages": ["common", "draconic"],
   "challenge": "10",
   "features": [],
@@ -49,6 +51,6 @@
       "description": "the dragon exhales fire in a 30-fot cone.  Each creature in that area must make a DC 17 Dexterity saving throw, taking 56 (16d6 fire damage on a failed save, or half as much damage on a successful one."
     }
   ],
-  "legendary-actions": { "description": "none", "legendary-actions": [] },
+  "legendary actions": { "description": "none", "legendary actions": [] },
   "reactions": []
 }

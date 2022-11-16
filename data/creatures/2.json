@@ -7,6 +7,7 @@
   "images": ["wolf1.png"],
   "description": "Wild creatures creatures.",
   "ac": 13,
+  "ac type": "(Natural Armor)",
   "hp": "11 (2d8 + 2)",
   "speed": {
     "walking": 40
@@ -19,13 +20,14 @@
     "wis": 12,
     "cha": 6
   },
+  "saving throws": [],
   "skills": ["perception +3", "Stealth +4"],
   "damage vulnerabilities": [],
   "damage resistances": [],
   "damage immunities": [],
   "condition immunities": [],
   "senses": [],
-  "passive-perception": 13,
+  "passive perception": 13,
   "languages": [],
   "challenge": "1/4",
   "features": [
@@ -44,6 +46,6 @@
       "description": "Melee Weapon Attack: +4 to hit, reach 5ft., one target. Hit: 7 (2d4 + 2) piercing damage.  If the target is a creature, it must succeed on a DC 11 Strength saving throw or be knocked prone."
     }
   ],
-  "legendary-actions": { "description": "none", "legendary-actions": [] },
+  "legendary actions": { "description": "none", "legendary actions": [] },
   "reactions": []
 }

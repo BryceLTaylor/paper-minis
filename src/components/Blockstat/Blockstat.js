@@ -25,7 +25,11 @@ const Blockstat = (props) => {
           info.alignment}
       </p>
       <hr />
-      <NormalInfo classToUse="ac" infoName="Armor Class" infoValue={info.ac} />
+      <NormalInfo
+        classToUse="ac"
+        infoName="Armor Class"
+        infoValue={info.ac + " " + info["ac type"]}
+      />
       <NormalInfo classToUse="hp" infoName="Hit Points" infoValue={info.hp} />
 
       <div className="speed normal-info">
@@ -55,7 +59,8 @@ const Blockstat = (props) => {
         ))}
       </div>
       <hr />
-      <OptionalList list={info.skills} infoName="Skills"></OptionalList>
+      <OptionalList list={info["saving throws"]} infoName="Saving Throw" />
+      <OptionalList list={info.skills} infoName="Skills" />
       <OptionalList
         list={info["damage vulnerabilities"]}
         infoName="Damage Vulnerabilities"
@@ -80,7 +85,7 @@ const Blockstat = (props) => {
         </span>
         <span className="info-value">
           {" passive Perception "}
-          {info["passive-perception"]}
+          {info["passive perception"]}
         </span>
       </div>
 
@@ -119,13 +124,14 @@ const Blockstat = (props) => {
       ) : null}
       <FeatureList list={info.actions} />
       {/* Legendary Actions */}
-      {info["legendary-actions"].length > 0 ? (
+      {info["legendary actions"]["legendary actions"].length > 0 ? (
         <div className="feature-header">
           <div>Legendary Actions</div>
           <hr />
+          <div>{info["legendary actions"].description}</div>
         </div>
       ) : null}
-      <FeatureList list={info["legendary-actions"]} />
+      <FeatureList list={info["legendary actions"]["legendary actions"]} />
       {/* Reactions */}
       {info.reactions.length > 0 ? (
         <div className="feature-header">
