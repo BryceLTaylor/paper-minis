@@ -10,7 +10,7 @@ import Browser from "../Browser/Browser.js";
 import "./App.css";
 
 const App = (props) => {
-  const printList = useState({});
+  const printList = useState({ creatures: [] });
   return (
     <div className="app">
       <PrintContext.Provider value={printList}>
