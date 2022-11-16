@@ -128,7 +128,9 @@ const Blockstat = (props) => {
         <div className="feature-header">
           <div>Legendary Actions</div>
           <hr />
-          <div>{info["legendary actions"].description}</div>
+          <div className="normal-text">
+            {info["legendary actions"].description}
+          </div>
         </div>
       ) : null}
       <FeatureList list={info["legendary actions"]["legendary actions"]} />
