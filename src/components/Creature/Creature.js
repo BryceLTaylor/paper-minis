@@ -6,6 +6,7 @@ import missingImage from "../../../images/missing.png";
 
 import "./Creature.css";
 import Blockstat from "../Blockstat/Blockstat.js";
+import PrintListButtons from "../PrintListButtons/PrintListButtons.js";
 
 const Creature = (props) => {
   const [creatureInfo, setCreatureInfo] = useState({
@@ -50,6 +51,7 @@ const Creature = (props) => {
         ) : (
           <p>loading blockstat</p>
         )}
+        <PrintListButtons creatureInfo={creatureInfo} />
       </div>
     </div>
   );
