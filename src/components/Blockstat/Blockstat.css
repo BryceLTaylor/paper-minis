@@ -33,3 +33,15 @@ hr {
   justify-content: space-around;
   color: darkred;
 }
+
+.feature-name {
+  font-weight: bold;
+  color: black;
+  font-size: 12;
+}
+
+.feature-text {
+  color: black;
+  font-size: 12;
+  font-style: italic;
+}

@@ -1,6 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
+import NormalInfo from "./NormalInfo.js";
+import OptionalList from "./OptionalList.js";
+import FeatureList from "./FeatureList";
+
 import "./Blockstat.css";
 
 const Blockstat = (props) => {
@@ -21,14 +25,9 @@ const Blockstat = (props) => {
           info.alignment}
       </p>
       <hr />
-      <div className="ac normal-info">
-        <span className="info-name">Armor Class </span>
-        <span className="info-value">{info.ac}</span>
-      </div>
-      <div className="hp normal-info">
-        <span className="info-name">Hit Points </span>
-        <span className="info-value">{info.hp}</span>
-      </div>
+      <NormalInfo classToUse="ac" infoName="Armor Class" infoValue={info.ac} />
+      <NormalInfo classToUse="hp" infoName="Hit Points" infoValue={info.hp} />
+
       <div className="speed normal-info">
         <span className="info-name">Speed </span>
 
@@ -56,61 +55,23 @@ const Blockstat = (props) => {
         ))}
       </div>
       <hr />
-
-      {info.skills.length > 0 ? (
-        <div className="skills normal-info">
-          <span className="info-name">Skills </span>
-          <span className="info-value">
-            {info.skills.map((skill) => skill + " ")}
-          </span>
-        </div>
-      ) : (
-        <div />
-      )}
-
-      {info["damage vulnerabilities"].length > 0 ? (
-        <div className="dv normal-info">
-          <span className="info-name">Damage Vulnerabilities </span>
-          <span className="info-value">
-            {info["damage vulnerabilities"].map((dr) => dr + " ")}
-          </span>
-        </div>
-      ) : (
-        <div />
-      )}
-
-      {info["damage resistances"].length > 0 ? (
-        <div className="dr normal-info">
-          <span className="info-name">Damage Resistances </span>
-          <span className="info-value">
-            {info["damage resistances"].map((dr) => dr + " ")}
-          </span>
-        </div>
-      ) : (
-        <div />
-      )}
-
-      {info["damage immunities"].length > 0 ? (
-        <div className="di normal-info">
-          <span className="info-name">Damage Immunities </span>
-          <span className="info-value">
-            {info["damage immunities"].map((dr) => dr + " ")}
-          </span>
-        </div>
-      ) : (
-        <div />
-      )}
-
-      {info["condition immunities"].length > 0 ? (
-        <div className="ci normal-info">
-          <span className="info-name">Condition Immunities </span>
-          <span className="info-value">
-            {info["condition immunities"].map((dr) => dr + " ")}
-          </span>
-        </div>
-      ) : (
-        <div />
-      )}
+      <OptionalList list={info.skills} infoName="Skills"></OptionalList>
+      <OptionalList
+        list={info["damage vulnerabilities"]}
+        infoName="Damage Vulnerabilities"
+      />
+      <OptionalList
+        list={info["damage resistances"]}
+        infoName="Damage Resistances"
+      />
+      <OptionalList
+        list={info["damage immunities"]}
+        infoName="Damage Immunities"
+      />
+      <OptionalList
+        list={info["condition immunities"]}
+        infoName="Condition Immunities"
+      />
 
       <div className="senses normal-info">
         <span className="info-name">Senses</span>
@@ -139,13 +100,40 @@ const Blockstat = (props) => {
           <span className="info-value">{"  --"}</span>
         )}
       </div>
-
-      <div className="cr normal-info">
-        <span className="info-name">Challenge </span>
-        <span className="info-value">{info.challenge}</span>
-      </div>
-
+      <NormalInfo
+        classToUse="cr"
+        infoName="Challenge"
+        infoValue={info.challenge}
+      />
       <hr />
+
+      {/* Features */}
+      <FeatureList list={info.features} />
+
+      {/* Actions */}
+      {info.actions.length > 0 ? (
+        <div className="feature-header">
+          <div>Actions</div>
+          <hr />
+        </div>
+      ) : null}
+      <FeatureList list={info.actions} />
+      {/* Legendary Actions */}
+      {info["legendary-actions"].length > 0 ? (
+        <div className="feature-header">
+          <div>Legendary Actions</div>
+          <hr />
+        </div>
+      ) : null}
+      <FeatureList list={info["legendary-actions"]} />
+      {/* Reactions */}
+      {info.reactions.length > 0 ? (
+        <div className="feature-header">
+          <div>Reactions</div>
+          <hr />
+        </div>
+      ) : null}
+      <FeatureList list={info.reactions} />
     </div>
   ) : (
     <p>no blockstat available</p>
