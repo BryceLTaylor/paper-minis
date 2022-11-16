@@ -24,7 +24,6 @@ const Creature = (props) => {
   }, [creatureInfo]);
 
   async function getCreatureInfo() {
-    console.log("looking for creature info");
     let creatureJSON = await getCreatureJson(props.creatureId);
     await setCreatureInfo(creatureJSON);
   }

@@ -23,7 +23,6 @@ const Browser = (props) => {
   async function requestCreatures() {
     let newCreatureList = await getCreatureList(searchOptions);
     await setCreatureListAll(newCreatureList);
-    await console.log(creatureListAll);
   }
 
   useEffect(() => {

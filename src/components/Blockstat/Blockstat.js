@@ -12,7 +12,6 @@ const Blockstat = (props) => {
 
   useEffect(() => {
     setInfo(props.creatureInfo);
-    console.log(info);
   }, [props.creatureInfo]);
 
   return info.id ? (

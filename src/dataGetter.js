@@ -12,10 +12,6 @@ import umberHulk1 from "../images/umberHulk1.png";
 async function getCreatureList(searchOptions) {
   let creatureList = allCreatures.creatures;
 
-  console.log(searchOptions);
-  console.log(Array.isArray(creatureList));
-  console.log(creatureList);
-
   /*
     name: "",
     CR: "",
