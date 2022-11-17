@@ -9,12 +9,33 @@ const Tabs = (props) => {
     console.log(printList);
   }
 
+  async function selectTab(tabName) {
+    console.log(`switch to tab ${tabName}`);
+    props.switchTabs(tabName);
+  }
+
   return (
     <div className="tabs">
-      <div className="tab browse-tab selected">Browse</div>
       <div
-        className="tab print-tab not-selected"
-        onClick={(e) => showPrintList()}
+        className={
+          "tab browse-tab" +
+          " " +
+          (props.currentTab === "browse" ? "selected" : "not-selected")
+        } // props.currentTab set selected based on tab state
+        onClick={(e) => selectTab("browse")}
+      >
+        Browse
+      </div>
+      <div
+        className={
+          "tab print-tab" +
+          " " +
+          (props.currentTab === "print" ? "selected" : "not-selected")
+        }
+        onClick={(e) => {
+          showPrintList();
+          selectTab("print");
+        }}
       >
         Print
       </div>
