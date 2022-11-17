@@ -2,6 +2,9 @@ import React from "react";
 import { useContext } from "react";
 
 import printContext from "../../printContext.js";
+import { getCreatureImageByName } from "../../dataGetter.js";
+
+import MiniListEntry from "./MiniListEntry";
 
 import "./MiniList.css";
 
@@ -10,11 +13,9 @@ const MiniList = (props) => {
   return (
     <div className="mini-list">
       <p>Mini List</p>
+
       {printList.creatures.map((creature) => (
-        <div key={creature.id}>
-          <img src={creature.creatureInfo.images[0]} />
-          <p>{creature.creatureInfo.name}</p>
-        </div>
+        <MiniListEntry key={creature.id} creature={creature} />
       ))}
     </div>
   );

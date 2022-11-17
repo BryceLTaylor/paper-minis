@@ -4,3 +4,23 @@
   background-color: white;
   border-radius: 10px;
 }
+
+.print-list-entry {
+  display: flex;
+  padding: 2px 0px;
+}
+
+.data {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 5px;
+}
+
+.data-and-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+button {
+  margin: 0px 5px;
+}
