@@ -1,18 +1,15 @@
-import React from "react";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 
 import printContext from "../../printContext.js";
 
 import "./PrintListButtons.css";
 
 const AddButton = (props) => {
-  // props: creatureInfo,  updateListCount
-  [printList, setPrintList] = useContext(printContext);
+  // props: creatureInfo,  updateListCount buttonText
+  const [printList, setPrintList] = useContext(printContext);
 
   async function addCreature() {
-    // console.log(`add ${props.creatureInfo.name} to printlist`);
     let creatureObject = await findCreature(printList, props.creatureInfo.id);
-    // console.log(creatureObject);
     if (creatureObject === null) {
       addNewCreature();
     } else {
@@ -63,9 +60,17 @@ const AddButton = (props) => {
     setPrintList(printListCopy);
   }
 
+  async function removeCreature() {
+    changeCreatureCount(-1);
+    props.updateListCount();
+  }
+
   return (
-    <button className="add-button" onClick={addCreature}>
-      Add
+    <button
+      className="add-button"
+      onClick={props.numberToAdd === 1 ? addCreature : removeCreature}
+    >
+      {props.buttonText}
     </button>
   );
 };
