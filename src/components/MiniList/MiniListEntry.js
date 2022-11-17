@@ -1,21 +1,37 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import missingImage from "../../../images/missing.png";
 import { getCreatureImageByName } from "../../dataGetter.js";
 import AddButton from "../PrintListButtons/AddButton.js";
 
+import printContext from "../../printContext.js";
+
 const MiniListEntry = (props) => {
+  // props: key creature count
+  const [printList, setPrintList] = useContext(printContext);
+
   const [creatureImage, setCreatureImage] = useState(missingImage);
-  const [creatureCount, setCreatureCount] = useState(props.creature.count);
+  const [creatureCount, setCreatureCount] = useState(0);
 
   useEffect(() => {
-    getCreatureImage();
+    getCreatureImage(printList, props.creature.id);
   }, []);
 
-  //   useEffect(() => {
+  useEffect(() => {
+    updatePrintCounts();
+  }, []);
 
-  //   },[creatureCount])
+  async function findCreature(creatureList, creatureId) {
+    let creatureInList = null;
+
+    // check all objects in the list
+    creatureList.creatures.forEach((creatureObject) => {
+      if (creatureObject.id === creatureId) {
+        creatureInList = creatureObject;
+      }
+    });
+    return creatureInList;
+  }
 
   async function getCreatureImage() {
     let image = await getCreatureImageByName(
@@ -24,9 +40,11 @@ const MiniListEntry = (props) => {
     await setCreatureImage(image);
   }
 
-  async function updatePrintCounts(newCount) {
+  async function updatePrintCounts() {
     console.log("update print counts");
-    setCreatureCount(props.creature.count);
+    let creatureInPrintList = await findCreature(printList, props.creature.id);
+    let newCount = await creatureInPrintList.count;
+    setCreatureCount(newCount);
   }
 
   return (
@@ -39,8 +57,15 @@ const MiniListEntry = (props) => {
           <AddButton
             creatureInfo={props.creature}
             updateListCount={updatePrintCounts}
+            buttonText="Add"
+            numberToAdd={1}
           />
-          <button>Remove</button>
+          <AddButton
+            creatureInfo={props.creature}
+            updateListCount={updatePrintCounts}
+            buttonText="Remove"
+            numberToAdd={-1}
+          />
         </div>
       </div>
     </div>
