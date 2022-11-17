@@ -1,16 +1,15 @@
-import react from "react";
 import { useContext } from "react";
 import "./Tabs.css";
 import PrintContext from "../../printContext";
 
 const Tabs = (props) => {
   const [printList] = useContext(PrintContext);
+
   async function showPrintList() {
     console.log(printList);
   }
 
   async function selectTab(tabName) {
-    console.log(`switch to tab ${tabName}`);
     props.switchTabs(tabName);
   }
 
@@ -22,7 +21,7 @@ const Tabs = (props) => {
           " " +
           (props.currentTab === "browse" ? "selected" : "not-selected")
         } // props.currentTab set selected based on tab state
-        onClick={(e) => selectTab("browse")}
+        onClick={() => selectTab("browse")}
       >
         Browse
       </div>
@@ -32,7 +31,7 @@ const Tabs = (props) => {
           " " +
           (props.currentTab === "print" ? "selected" : "not-selected")
         }
-        onClick={(e) => {
+        onClick={() => {
           showPrintList();
           selectTab("print");
         }}

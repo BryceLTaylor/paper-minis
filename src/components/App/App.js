@@ -15,9 +15,7 @@ const App = (props) => {
   const [tabSelected, setTabSelected] = useState("browse");
 
   async function changeTabs(tabToChoose) {
-    console.log("before switching tabs");
     await setTabSelected(tabToChoose);
-    console.log("after switching tabs");
   }
 
   return (

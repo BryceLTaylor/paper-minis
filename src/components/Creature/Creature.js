@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 
 import { getCreatureJson, getCreatureImageByName } from "../../dataGetter.js";

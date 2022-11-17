@@ -1,5 +1,3 @@
-import React from "react";
-
 import MiniList from "../MiniList/MiniList.js";
 
 const MiniPrinter = (props) => {
