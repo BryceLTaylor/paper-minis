@@ -9,7 +9,7 @@ import kobold1 from "../images/kobold1.png";
 import minotaur1 from "../images/minotaur1.png";
 import umberHulk1 from "../images/umberHulk1.png";
 
-async function getCreatureList(searchOptions) {
+async function getCreatureList() {
   let creatureList = allCreatures.creatures;
 
   /*
@@ -26,7 +26,7 @@ async function getCreatureList(searchOptions) {
 
 async function getCreatureJson(creatureId) {
   let creatureObject = {};
-  creatureList = creatureInfo.creatures;
+  let creatureList = creatureInfo.creatures;
   for (let i = 0; i < creatureList.length; i++) {
     if (creatureList[i].id === creatureId) {
       creatureObject = creatureList[i];
