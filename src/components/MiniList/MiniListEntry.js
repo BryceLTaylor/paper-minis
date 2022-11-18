@@ -59,12 +59,14 @@ const MiniListEntry = (props) => {
             buttonText="Add"
             numberToAdd={1}
           />
-          <AddButton
-            creatureInfo={props.creature}
-            updateListCount={updatePrintCounts}
-            buttonText="Remove"
-            numberToAdd={-1}
-          />
+          {creatureCount > 0 ? (
+            <AddButton
+              creatureInfo={props.creature}
+              updateListCount={updatePrintCounts}
+              buttonText="Remove"
+              numberToAdd={-1}
+            />
+          ) : null}
         </div>
       </div>
     </div>
