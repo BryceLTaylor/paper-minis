@@ -49,7 +49,9 @@ const Creature = (props) => {
         ) : (
           <p>loading blockstat</p>
         )}
-        <PrintListButtons creatureInfo={creatureInfo} />
+        {creatureInfo.id !== undefined ? (
+          <PrintListButtons creatureInfo={creatureInfo} />
+        ) : null}
       </div>
     </div>
   );

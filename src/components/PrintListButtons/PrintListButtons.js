@@ -34,11 +34,7 @@ const PrintListButtons = (props) => {
   }
 
   async function getListCount() {
-    console.log(props.creatureInfo);
-
     let creatureInList = await findCreature(printList, props.creatureInfo.id);
-    console.log(creatureInList);
-
     setCountInList(creatureInList?.count ?? 0);
   }
 

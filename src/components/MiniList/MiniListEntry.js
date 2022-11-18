@@ -41,7 +41,6 @@ const MiniListEntry = (props) => {
   }
 
   async function updatePrintCounts() {
-    console.log("update print counts");
     let creatureInPrintList = await findCreature(printList, props.creature.id);
     let newCount = await creatureInPrintList.count;
     setCreatureCount(newCount);
