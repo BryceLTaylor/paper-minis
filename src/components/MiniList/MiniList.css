@@ -2,7 +2,7 @@
   border: 1px solid lightgray;
   width: 300px;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 0px 10px 10px 10px;
 }
 
 .print-list-entry {

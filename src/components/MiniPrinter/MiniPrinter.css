@@ -1,0 +1,4 @@
+.mini-printer {
+  display: flex;
+  flex-direction: row;
+}
