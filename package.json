@@ -4,10 +4,12 @@
   "description": "A tool for choosing creatures to print paper minis for",
   "main": "index.js",
   "scripts": {
+    "build": "parcel build src/index.html",
     "dev": "parcel src/index.html",
     "format": "prettier --write \"src/**/*.{js,jsx}\" ",
     "format:check": "prettier --check \"src/**/*.{js,jsx}\" ",
-    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
+    "push-gh-pages": "npm run build && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,7 @@
     "eslint": "^8.23.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^4.0.0",
     "parcel": "^2.7.0",
     "prettier": "^2.7.1",
     "process": "^0.11.10"
