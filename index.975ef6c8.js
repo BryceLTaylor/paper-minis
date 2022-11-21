@@ -27371,7 +27371,7 @@ const Tabs = (props)=>{
     _s();
     const [printList] = (0, _react.useContext)((0, _printContextDefault.default));
     async function showPrintList() {
-        console.log(printList);
+    // console.log(printList);
     }
     async function selectTab(tabName) {
         props.switchTabs(tabName);
@@ -27391,7 +27391,7 @@ const Tabs = (props)=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "tab print-tab " + (props.currentTab === "print" ? "selected" : "not-selected"),
                 onClick: ()=>{
-                    showPrintList();
+                    // showPrintList();
                     selectTab("print");
                 },
                 children: "Print"
@@ -29098,6 +29098,8 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _miniAssemblyCss = require("./MiniAssembly.css");
+var _layoutCanvas = require("./LayoutCanvas");
+var _layoutCanvasDefault = parcelHelpers.interopDefault(_layoutCanvas);
 const MiniAssembly = (props)=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "mini-assembly",
@@ -29106,22 +29108,18 @@ const MiniAssembly = (props)=>{
                 children: "Mini Assembly"
             }, void 0, false, {
                 fileName: "src/components/MiniAssembly/MiniAssembly.js",
-                lineNumber: 6,
+                lineNumber: 8,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("canvas", {
-                id: "workTable",
-                width: "800",
-                height: "1100"
-            }, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _layoutCanvasDefault.default), {}, void 0, false, {
                 fileName: "src/components/MiniAssembly/MiniAssembly.js",
-                lineNumber: 8,
+                lineNumber: 10,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/MiniAssembly/MiniAssembly.js",
-        lineNumber: 5,
+        lineNumber: 7,
         columnNumber: 5
     }, undefined);
 };
@@ -29135,6 +29133,112 @@ $RefreshReg$(_c, "MiniAssembly");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./MiniAssembly.css":"2nO1O"}],"2nO1O":[function() {},{}],"8XYvM":[function() {},{}]},["1xC6H","ShInH","8lqZg"], "8lqZg", "parcelRequire7c04")
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./MiniAssembly.css":"2nO1O","./LayoutCanvas":"ln4lj"}],"2nO1O":[function() {},{}],"ln4lj":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$06b0 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$06b0.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _printContextJs = require("../../printContext.js");
+var _printContextJsDefault = parcelHelpers.interopDefault(_printContextJs);
+var _missingPng = require("../../../images/missing.png");
+var _missingPngDefault = parcelHelpers.interopDefault(_missingPng);
+var _dataGetterJs = require("../../dataGetter.js");
+var _s = $RefreshSig$();
+const LayoutCanvas = (props)=>{
+    _s();
+    const [printList] = (0, _react.useContext)((0, _printContextJsDefault.default));
+    const [imageList, setImageList] = (0, _react.useState)(new Map());
+    const [imagesLoaded, setImagesLoaded] = (0, _react.useState)(false);
+    imageList.set("missing", (0, _missingPngDefault.default));
+    getImages();
+    const canvasRef = (0, _react.useRef)(null);
+    async function drawMinis() {
+        const canvas = canvasRef.current;
+        const context = canvas.getContext("2d");
+        context.fillStyle = "#FFFFFF";
+        context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+        let miniLocation = {
+            x: 0,
+            y: 0
+        };
+        let imageDimensions = {
+            x: 100,
+            y: 100
+        };
+        let miniDimensions = imageDimensions;
+        await printList.creatures.map(async (creature)=>{
+            for(let i = 0; i < creature.count; i++){
+                drawMini(context, creature.id, miniLocation.x, miniLocation.y, imageDimensions.x, imageDimensions.y);
+                miniLocation.x += miniDimensions.x;
+                if (miniLocation.x + miniDimensions.x > context.canvas.width) {
+                    miniLocation.x = 0;
+                    miniLocation.y += miniDimensions.y;
+                }
+            }
+        });
+    }
+    async function drawMini(context, imageId, startX, startY, imageWidth, imageHeight) {
+        let frontImage = await document.getElementById(`hiddenImage${imageId}`);
+        if (frontImage) context.drawImage(frontImage, startX, startY, imageWidth, imageHeight);
+    }
+    (0, _react.useEffect)(()=>{
+        drawMinis();
+    }, [
+        imagesLoaded
+    ]);
+    async function getImages() {
+        await printList.creatures.map(async (creature)=>{
+            if (!imageList.has(creature.id)) await setImageList(new Map(await imageList.set(creature.id, await (0, _dataGetterJs.getCreatureImageById)(creature.id))));
+        });
+        setImagesLoaded(true);
+    }
+    /* full size is 2400 x 3300 */ return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+        children: [
+            imagesLoaded ? [
+                ...imageList.keys()
+            ].map((creatureImage)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                    src: imageList.get(creatureImage),
+                    id: `hiddenImage${creatureImage}`,
+                    hidden: "hidden"
+                }, creatureImage, false, {
+                    fileName: "src/components/MiniAssembly/LayoutCanvas.js",
+                    lineNumber: 90,
+                    columnNumber: 13
+                }, undefined)) : null,
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("canvas", {
+                ref: canvasRef,
+                id: "workTable",
+                width: "850",
+                height: "1100"
+            }, void 0, false, {
+                fileName: "src/components/MiniAssembly/LayoutCanvas.js",
+                lineNumber: 98,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/MiniAssembly/LayoutCanvas.js",
+        lineNumber: 87,
+        columnNumber: 5
+    }, undefined);
+};
+_s(LayoutCanvas, "0+YcROxPGJSdoSWc7mBEki0/2Vo=");
+_c = LayoutCanvas;
+exports.default = LayoutCanvas;
+var _c;
+$RefreshReg$(_c, "LayoutCanvas");
+
+  $parcel$ReactRefreshHelpers$06b0.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","../../printContext.js":"8yfvc","../../dataGetter.js":"2DpBh","../../../images/missing.png":"6uwq0"}],"8XYvM":[function() {},{}]},["1xC6H","ShInH","8lqZg"], "8lqZg", "parcelRequire7c04")
 
 //# sourceMappingURL=index.975ef6c8.js.map
