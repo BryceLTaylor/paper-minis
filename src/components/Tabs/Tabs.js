@@ -6,7 +6,7 @@ const Tabs = (props) => {
   const [printList] = useContext(PrintContext);
 
   async function showPrintList() {
-    console.log(printList);
+    // console.log(printList);
   }
 
   async function selectTab(tabName) {
@@ -32,7 +32,7 @@ const Tabs = (props) => {
           (props.currentTab === "print" ? "selected" : "not-selected")
         }
         onClick={() => {
-          showPrintList();
+          // showPrintList();
           selectTab("print");
         }}
       >

@@ -30,7 +30,6 @@ const LayoutCanvas = (props) => {
 
     await printList.creatures.map(async (creature) => {
       for (let i = 0; i < creature.count; i++) {
-        console.log(`drawing mini for ${creature.id}`);
         drawMini(
           context,
           creature.id,
@@ -56,11 +55,7 @@ const LayoutCanvas = (props) => {
     imageWidth,
     imageHeight
   ) {
-    console.log(`startX: ${startX}  startY: ${startY}`);
-    // let frontImage = imageList.get(imageId);
     let frontImage = await document.getElementById(`hiddenImage${imageId}`);
-    console.log(frontImage);
-
     if (frontImage) {
       context.drawImage(frontImage, startX, startY, imageWidth, imageHeight);
     }
