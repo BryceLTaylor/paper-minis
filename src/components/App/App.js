@@ -1,4 +1,3 @@
-import react from "react";
 import { useState } from "react";
 
 import PrintContext from "../../printContext.js";
