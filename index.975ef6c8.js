@@ -27234,7 +27234,6 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
 var _printContextJs = require("../../printContext.js");
 var _printContextJsDefault = parcelHelpers.interopDefault(_printContextJs);
 var _headerJs = require("../Header/Header.js");
@@ -27265,7 +27264,7 @@ const App = (props)=>{
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _headerJsDefault.default), {}, void 0, false, {
                     fileName: "src/components/App/App.js",
-                    lineNumber: 24,
+                    lineNumber: 23,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tabsJsDefault.default), {
@@ -27273,34 +27272,34 @@ const App = (props)=>{
                     switchTabs: changeTabs
                 }, void 0, false, {
                     fileName: "src/components/App/App.js",
-                    lineNumber: 25,
+                    lineNumber: 24,
                     columnNumber: 9
                 }, undefined),
                 tabSelected === "browse" ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _errorBoundaryJsDefault.default), {
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _browserJsDefault.default), {}, void 0, false, {
                         fileName: "src/components/App/App.js",
-                        lineNumber: 28,
+                        lineNumber: 27,
                         columnNumber: 13
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/App/App.js",
-                    lineNumber: 27,
+                    lineNumber: 26,
                     columnNumber: 11
                 }, undefined) : null,
                 tabSelected === "print" ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _miniPrinterJsDefault.default), {}, void 0, false, {
                     fileName: "src/components/App/App.js",
-                    lineNumber: 31,
+                    lineNumber: 30,
                     columnNumber: 36
                 }, undefined) : null
             ]
         }, void 0, true, {
             fileName: "src/components/App/App.js",
-            lineNumber: 23,
+            lineNumber: 22,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/App/App.js",
-        lineNumber: 22,
+        lineNumber: 21,
         columnNumber: 5
     }, undefined);
 };
@@ -29171,10 +29170,38 @@ const LayoutCanvas = (props)=>{
             x: 100,
             y: 100
         };
-        let miniDimensions = imageDimensions;
+        let pixelsPerInch = 100;
         await printList.creatures.map(async (creature)=>{
+            let creatureSize = creature.creatureInfo.size;
+            console.log(creatureSize);
             for(let i = 0; i < creature.count; i++){
-                drawMini(context, creature.id, miniLocation.x, miniLocation.y, imageDimensions.x, imageDimensions.y);
+                let baseSize, standHeight;
+                switch(creatureSize){
+                    case "large":
+                        baseSize = 2;
+                        standHeight = 2.5;
+                        break;
+                    case "huge":
+                        baseSize = 3;
+                        standHeight = 4;
+                        break;
+                    case "medium":
+                        baseSize = 1;
+                        standHeight = 1.5;
+                        break;
+                    case "small":
+                        baseSize = 1;
+                        standHeight = 1.5; // later maybe make this smaller
+                    default:
+                        baseSize = 1;
+                        standHeight = 1.5;
+                        break;
+                }
+                let miniDimensions = {
+                    x: baseSize * pixelsPerInch,
+                    y: (baseSize * 2 + standHeight * 2) * pixelsPerInch
+                };
+                drawMini(context, creature.id, miniLocation.x, miniLocation.y, baseSize * pixelsPerInch, baseSize * pixelsPerInch, baseSize * pixelsPerInch, standHeight * pixelsPerInch);
                 miniLocation.x += miniDimensions.x;
                 if (miniLocation.x + miniDimensions.x > context.canvas.width) {
                     miniLocation.x = 0;
@@ -29183,14 +29210,58 @@ const LayoutCanvas = (props)=>{
             }
         });
     }
-    async function drawMini(context, imageId, startX, startY, imageWidth, imageHeight) {
+    async function drawMini(context, imageId, startX, startY, imageWidth, imageHeight, baseSize, standHeight) {
         let frontImage = await document.getElementById(`hiddenImage${imageId}`);
-        if (frontImage) context.drawImage(frontImage, startX, startY, imageWidth, imageHeight);
+        let dashes = [
+            5,
+            5
+        ];
+        if (frontImage) {
+            context.setLineDash([]);
+            context.beginPath();
+            //top line
+            context.moveTo(startX, startY);
+            context.lineTo(startX + baseSize, startY);
+            // right line
+            context.lineTo(startX + baseSize, startY + (2 * baseSize + 2 * standHeight));
+            // bottom line
+            context.lineTo(startX, startY + (2 * baseSize + 2 * standHeight));
+            //left line
+            context.lineTo(startX, startY);
+            context.stroke();
+            //horizontal lines
+            context.beginPath();
+            context.setLineDash(dashes);
+            context.moveTo(startX, startY + 0.5 * baseSize);
+            context.lineTo(startX + baseSize, startY + 0.5 * baseSize);
+            context.stroke();
+            context.setLineDash([]);
+            context.setLineDash(dashes);
+            context.moveTo(startX, startY + 0.5 * baseSize + standHeight);
+            context.lineTo(startX + baseSize, startY + 0.5 * baseSize + standHeight);
+            context.moveTo(startX, startY + 0.5 * baseSize + 2 * standHeight);
+            context.lineTo(startX + baseSize, startY + 0.5 * baseSize + 2 * standHeight);
+            context.moveTo(startX, startY + baseSize + 2 * standHeight);
+            context.lineTo(startX + baseSize, startY + baseSize + 2 * standHeight);
+            context.stroke();
+            context.setLineDash([]);
+            //draw upside down image
+            context.save();
+            context.translate(startX + imageWidth / 2, startY + imageHeight / 2 + baseSize / 2 + (standHeight - imageHeight) / 2);
+            context.rotate(Math.PI);
+            context.translate(-(startX + imageWidth / 2), -(startY + imageHeight / 2 + baseSize / 2 + (standHeight - imageHeight) / 2));
+            context.drawImage(frontImage, startX, startY + 0.5 * baseSize + (standHeight - imageHeight) / 2, imageWidth, imageHeight);
+            context.rotate(-Math.PI);
+            context.restore();
+            //draw right side up image
+            context.drawImage(frontImage, startX, startY + 0.5 * baseSize + standHeight + (standHeight - imageHeight) / 2, imageWidth, imageHeight);
+        }
     }
     (0, _react.useEffect)(()=>{
         drawMinis();
     }, [
-        imagesLoaded
+        imagesLoaded,
+        printList
     ]);
     async function getImages() {
         await printList.creatures.map(async (creature)=>{
@@ -29208,7 +29279,7 @@ const LayoutCanvas = (props)=>{
                     hidden: "hidden"
                 }, creatureImage, false, {
                     fileName: "src/components/MiniAssembly/LayoutCanvas.js",
-                    lineNumber: 90,
+                    lineNumber: 205,
                     columnNumber: 13
                 }, undefined)) : null,
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("canvas", {
@@ -29218,13 +29289,13 @@ const LayoutCanvas = (props)=>{
                 height: "1100"
             }, void 0, false, {
                 fileName: "src/components/MiniAssembly/LayoutCanvas.js",
-                lineNumber: 98,
+                lineNumber: 213,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/MiniAssembly/LayoutCanvas.js",
-        lineNumber: 87,
+        lineNumber: 202,
         columnNumber: 5
     }, undefined);
 };
