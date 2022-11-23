@@ -3,6 +3,8 @@ import { useState, useEffect, useContext, useRef } from "react";
 import printContext from "../../printContext.js";
 import missingImage from "../../../images/missing.png";
 
+import "./MiniAssembly.css";
+
 import {
   getCreatureImageByName,
   getCreatureImageById,
@@ -14,20 +16,22 @@ const LayoutCanvas = (props) => {
   const [imagesLoaded, setImagesLoaded] = useState(false);
   imageList.set("missing", missingImage);
 
+  const offCanvas = new OffscreenCanvas(2400, 3300);
+
   getImages();
 
   const canvasRef = useRef(null);
 
   async function drawMinis() {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
+    const canvas = canvasRef.current; //onscreen canvas only
+    const context = offCanvas.getContext("2d");
     context.fillStyle = "#FFFFFF";
     context.fillRect(0, 0, context.canvas.width, context.canvas.height);
 
     let miniLocation = { x: 0, y: 0 };
     let imageDimensions = { x: 100, y: 100 };
 
-    let pixelsPerInch = 100;
+    let pixelsPerInch = 300;
 
     await printList.creatures.map(async (creature) => {
       let creatureSize = creature.creatureInfo.size;
@@ -77,6 +81,16 @@ const LayoutCanvas = (props) => {
         }
       }
     });
+    drawOffScreen(offCanvas, canvas);
+
+    // const onScreenContext = canvas.getContext("2d");
+    // onScreenContext.drawImage(
+    //   offCanvas,
+    //   0,
+    //   0,
+    //   onScreenContext.canvas.width,
+    //   onScreenContext.canvas.height
+    // );
   }
 
   async function drawMini(
@@ -176,6 +190,19 @@ const LayoutCanvas = (props) => {
     }
   }
 
+  async function drawOffScreen(offCanvas, onCanvas) {
+    const onScreenContext = onCanvas.getContext("2d");
+    // const offScreenContext = offCanvas.getContext("2d");
+    console.log(onScreenContext.canvas);
+    onScreenContext.drawImage(
+      offCanvas,
+      0,
+      0,
+      onScreenContext.canvas.width,
+      onScreenContext.canvas.height
+    );
+  }
+
   useEffect(() => {
     drawMinis();
   }, [imagesLoaded, printList]);
@@ -199,7 +226,7 @@ const LayoutCanvas = (props) => {
   /* full size is 2400 x 3300 */
 
   return (
-    <span>
+    <span width="100%">
       {imagesLoaded
         ? [...imageList.keys()].map((creatureImage) => (
             <img
@@ -210,7 +237,13 @@ const LayoutCanvas = (props) => {
             />
           ))
         : null}
-      <canvas ref={canvasRef} id="workTable" width="850" height="1100" />
+      <canvas
+        ref={canvasRef}
+        id="workTable"
+        className="mini-canvas"
+        width="850px"
+        height="1100px"
+      />
     </span>
   );
 };
