@@ -1,4 +1,10 @@
-import { useState, useEffect, useContext, useRef } from "react";
+import {
+  useState,
+  useEffect,
+  useContext,
+  useRef,
+  useLayoutEffect,
+} from "react";
 
 import printContext from "../../printContext.js";
 import missingImage from "../../../images/missing.png";
@@ -14,6 +20,14 @@ const LayoutCanvas = (props) => {
   const [printList] = useContext(printContext);
   const [imageList, setImageList] = useState(new Map());
   const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  const [printCanvasWidth, setPrintCanvasWidth] = useState(0);
+  const [printCanvasHeight, setPrintCanvasHeight] = useState(0);
+  useLayoutEffect(() => {
+    setPrintCanvasWidth(spanRef.current.offsetWidth);
+    setPrintCanvasHeight((spanRef.current.offsetWidth * 11) / 8.5);
+  }, []);
+
   imageList.set("missing", missingImage);
 
   const offCanvas = new OffscreenCanvas(2400, 3300);
@@ -21,6 +35,9 @@ const LayoutCanvas = (props) => {
   getImages();
 
   const canvasRef = useRef(null);
+  const spanRef = useRef(null);
+
+  let lineOffset = 3;
 
   async function drawMinis() {
     const canvas = canvasRef.current; //onscreen canvas only
@@ -82,15 +99,6 @@ const LayoutCanvas = (props) => {
       }
     });
     drawOffScreen(offCanvas, canvas);
-
-    // const onScreenContext = canvas.getContext("2d");
-    // onScreenContext.drawImage(
-    //   offCanvas,
-    //   0,
-    //   0,
-    //   onScreenContext.canvas.width,
-    //   onScreenContext.canvas.height
-    // );
   }
 
   async function drawMini(
@@ -105,9 +113,10 @@ const LayoutCanvas = (props) => {
   ) {
     let frontImage = await document.getElementById(`hiddenImage${imageId}`);
 
-    let dashes = [5, 5];
+    let dashes = [10, 10];
     if (frontImage) {
       context.setLineDash([]);
+      context.lineWidth = 5;
 
       context.beginPath();
       //top line
@@ -171,9 +180,9 @@ const LayoutCanvas = (props) => {
       );
       context.drawImage(
         frontImage,
-        startX,
+        startX + lineOffset,
         startY + 0.5 * baseSize + (standHeight - imageHeight) / 2,
-        imageWidth,
+        imageWidth - lineOffset * 2,
         imageHeight
       );
       context.rotate(-Math.PI);
@@ -182,9 +191,9 @@ const LayoutCanvas = (props) => {
       //draw right side up image
       context.drawImage(
         frontImage,
-        startX,
+        startX + lineOffset,
         startY + 0.5 * baseSize + standHeight + (standHeight - imageHeight) / 2,
-        imageWidth,
+        imageWidth - lineOffset * 2,
         imageHeight
       );
     }
@@ -198,8 +207,12 @@ const LayoutCanvas = (props) => {
       offCanvas,
       0,
       0,
-      onScreenContext.canvas.width,
-      onScreenContext.canvas.height
+      offCanvas.width,
+      offCanvas.height,
+      0,
+      0,
+      onCanvas.width,
+      onCanvas.height
     );
   }
 
@@ -226,7 +239,7 @@ const LayoutCanvas = (props) => {
   /* full size is 2400 x 3300 */
 
   return (
-    <span width="100%">
+    <span width="100%" ref={spanRef}>
       {imagesLoaded
         ? [...imageList.keys()].map((creatureImage) => (
             <img
@@ -241,8 +254,8 @@ const LayoutCanvas = (props) => {
         ref={canvasRef}
         id="workTable"
         className="mini-canvas"
-        width="850px"
-        height="1100px"
+        width={printCanvasWidth}
+        height={printCanvasHeight}
       />
     </span>
   );
