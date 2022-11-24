@@ -45,14 +45,15 @@ const LayoutCanvas = (props) => {
     context.fillStyle = "#FFFFFF";
     context.fillRect(0, 0, context.canvas.width, context.canvas.height);
 
-    let miniLocation = { x: 0, y: 0 };
-    let imageDimensions = { x: 100, y: 100 };
-
     let pixelsPerInch = 300;
+    let margin = 0.5;
+    let marginPixels = margin * pixelsPerInch;
+
+    let miniLocation = { x: marginPixels, y: marginPixels };
+    let imageDimensions = { x: 100, y: 100 };
 
     await printList.creatures.map(async (creature) => {
       let creatureSize = creature.creatureInfo.size;
-      console.log(creatureSize);
       for (let i = 0; i < creature.count; i++) {
         let baseSize, standHeight;
         switch (creatureSize) {
@@ -92,8 +93,11 @@ const LayoutCanvas = (props) => {
           standHeight * pixelsPerInch
         );
         miniLocation.x += miniDimensions.x;
-        if (miniLocation.x + miniDimensions.x > context.canvas.width) {
-          miniLocation.x = 0;
+        if (
+          miniLocation.x + miniDimensions.x >
+          context.canvas.width - marginPixels
+        ) {
+          miniLocation.x = marginPixels;
           miniLocation.y += miniDimensions.y;
         }
       }
