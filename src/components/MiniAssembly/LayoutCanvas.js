@@ -9,6 +9,8 @@ import {
 import printContext from "../../printContext.js";
 import missingImage from "../../../images/missing.png";
 
+import printCanvasHTML from "../../printCanvas.html";
+
 import "./MiniAssembly.css";
 
 import {
@@ -106,7 +108,7 @@ const LayoutCanvas = (props) => {
         }
       }
     });
-    drawOffScreen(offCanvas, canvas);
+    await drawOffScreen(offCanvas, canvas);
   }
 
   async function drawMini(
@@ -210,7 +212,6 @@ const LayoutCanvas = (props) => {
   async function drawOffScreen(offCanvas, onCanvas) {
     const onScreenContext = onCanvas.getContext("2d");
     // const offScreenContext = offCanvas.getContext("2d");
-    console.log(onScreenContext.canvas);
     onScreenContext.drawImage(
       offCanvas,
       0,
@@ -244,44 +245,57 @@ const LayoutCanvas = (props) => {
     setImagesLoaded(true);
   }
 
-  function printMinis() {
+  async function printMinis() {
     console.log(`print miniatures`);
-    console.log(offCanvas);
-    // window.print();
-    // console.log(dataUrl);
     setPrinting(true);
 
-    let frameObj = document.getElementById("printFrame");
+    let frameObj = await document.getElementById("printFrame");
+    let frameContent = await frameObj.contentWindow.document.body;
+
     console.log(frameObj);
 
-    let frameContent = frameObj.contentWindow.document.body;
-    let printingCanvas = document.createElement("canvas");
-    printingCanvas.style.width = "2400";
-    printingCanvas.style.height = "3300";
-    printingCanvas.removeAttribute("hidden");
-    ctx = printingCanvas.getContext("2d");
-    ctx.drawImage(
-      offCanvas,
-      0,
-      0,
-      offCanvas.width,
-      offCanvas.height,
-      0,
-      0,
-      printingCanvas.width,
-      printingCanvas.height
-    );
+    let frameDoc = frameObj.contentWindow.document;
+    console.log(frameDoc);
 
-    frameContent.appendChild(printingCanvas);
-    // frameContent.contentWindow.print();
+    let printingCanvas = await frameDoc.getElementById("printCanvas");
+    console.log(printingCanvas);
 
-    let frame = document.getElementById("printFrame");
-    let win = frame.contentWindow;
-    console.log(frame);
+    // let printingCanvas = document.createElement("canvas");
+    // printingCanvas.style.width = 2400;
+    // printingCanvas.style.height = 3300;
+    // printingCanvas.style.id = "printingCanvas";
 
+    // // printingCanvas.removeAttribute("hidden");
+
+    // await frameContent.appendChild(printingCanvas);
+
+    // test comment
+
+    await drawOffScreen(offCanvas, printingCanvas);
+    await setTimeout(() => {
+      console.log("waited for half a second");
+    }, 1000);
+
+    // ctx = printingCanvas.getContext("2d");
+    // console.log(ctx);
+    // ctx.drawImage(
+    //   offCanvas,
+    //   0,
+    //   0,
+    //   offCanvas.width,
+    //   offCanvas.height,
+    //   0,
+    //   0,
+    //   printingCanvas.width,
+    //   printingCanvas.height
+    // );
+
+    let win = frameObj.contentWindow;
+
+    win.focus();
     win.print();
-    // frameContent.print();
 
+    // frameContent.innerHTML = "";
     // let frame = printCanvasRef.current;
     // let printCanvas = frame.createElement("canvas");
   }
@@ -329,7 +343,13 @@ const LayoutCanvas = (props) => {
           height={printCanvasHeight}
         />
       </span>
-      <iframe ref={iFrameRef} id="printFrame" hidden="hidden"></iframe>
+      <iframe
+        ref={iFrameRef}
+        id="printFrame"
+        width="2400"
+        height="3300"
+        src={printCanvasHTML}
+      ></iframe>
       {/* {printing ? (
         <iframe ref={iFrameRef} id="printFrame" hidden="hidden"></iframe>
       ) : null} */}
