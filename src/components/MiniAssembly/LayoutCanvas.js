@@ -243,6 +243,9 @@ const LayoutCanvas = (props) => {
   /* full size is 2400 x 3300 */
 
   return (
+    <div>
+      <p>Mini Assembly</p>
+      <button onClick={printMinis}>Print</button>
     <span width="100%" ref={spanRef}>
       {imagesLoaded
         ? [...imageList.keys()].map((creatureImage) => (
@@ -262,6 +265,11 @@ const LayoutCanvas = (props) => {
         height={printCanvasHeight}
       />
     </span>
+      <iframe ref={iFrameRef} id="printFrame" hidden="hidden"></iframe>
+      {/* {printing ? (
+        <iframe ref={iFrameRef} id="printFrame" hidden="hidden"></iframe>
+      ) : null} */}
+    </div>
   );
 };
 
