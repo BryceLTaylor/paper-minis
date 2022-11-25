@@ -37,6 +37,10 @@ const LayoutCanvas = (props) => {
   const canvasRef = useRef(null);
   const spanRef = useRef(null);
 
+  const iFrameRef = useRef(null);
+  const [printing, setPrinting] = useState(false);
+  const printCanvasRef = useRef(null);
+
   let lineOffset = 3;
 
   async function drawMinis() {
@@ -240,31 +244,91 @@ const LayoutCanvas = (props) => {
     setImagesLoaded(true);
   }
 
+  function printMinis() {
+    console.log(`print miniatures`);
+    console.log(offCanvas);
+    // window.print();
+    // console.log(dataUrl);
+    setPrinting(true);
+
+    let frameObj = document.getElementById("printFrame");
+    console.log(frameObj);
+
+    let frameContent = frameObj.contentWindow.document.body;
+    let printingCanvas = document.createElement("canvas");
+    printingCanvas.style.width = "2400";
+    printingCanvas.style.height = "3300";
+    printingCanvas.removeAttribute("hidden");
+    ctx = printingCanvas.getContext("2d");
+    ctx.drawImage(
+      offCanvas,
+      0,
+      0,
+      offCanvas.width,
+      offCanvas.height,
+      0,
+      0,
+      printingCanvas.width,
+      printingCanvas.height
+    );
+
+    frameContent.appendChild(printingCanvas);
+    // frameContent.contentWindow.print();
+
+    let frame = document.getElementById("printFrame");
+    let win = frame.contentWindow;
+    console.log(frame);
+
+    win.print();
+    // frameContent.print();
+
+    // let frame = printCanvasRef.current;
+    // let printCanvas = frame.createElement("canvas");
+  }
+
+  function printCanvas() {
+    var dataUrl = offCanvas.toDataURL("image/png", 1.0); //attempt to save base64 string to server using this var
+    var windowContent = "<!DOCTYPE html>";
+    windowContent += "<html>";
+    windowContent += "<head><title>Print canvas</title></head>";
+    windowContent += "<body>";
+    windowContent += '<img src="' + dataUrl + '">';
+    windowContent += "</body>";
+    windowContent += "</html>";
+    var printWin = window.open("", "", "width=340,height=260");
+    printWin.document.open();
+    printWin.document.write(windowContent);
+    printWin.document.close();
+    printWin.focus();
+    printWin.print();
+    printWin.close();
+  }
+
   /* full size is 2400 x 3300 */
 
   return (
     <div>
       <p>Mini Assembly</p>
       <button onClick={printMinis}>Print</button>
-    <span width="100%" ref={spanRef}>
-      {imagesLoaded
-        ? [...imageList.keys()].map((creatureImage) => (
-            <img
-              src={imageList.get(creatureImage)}
-              id={`hiddenImage${creatureImage}`}
-              key={creatureImage}
-              hidden="hidden"
-            />
-          ))
-        : null}
-      <canvas
-        ref={canvasRef}
-        id="workTable"
-        className="mini-canvas"
-        width={printCanvasWidth}
-        height={printCanvasHeight}
-      />
-    </span>
+      <span width="100%" ref={spanRef}>
+        {imagesLoaded
+          ? [...imageList.keys()].map((creatureImage) => (
+              <img
+                src={imageList.get(creatureImage)}
+                id={`hiddenImage${creatureImage}`}
+                key={creatureImage}
+                hidden="hidden"
+              />
+            ))
+          : null}
+        <canvas
+          ref={canvasRef}
+          id="workTable"
+          className="mini-canvas"
+          width={printCanvasWidth}
+          height={printCanvasHeight}
+        />
+      </span>
       <iframe ref={iFrameRef} id="printFrame" hidden="hidden"></iframe>
       {/* {printing ? (
         <iframe ref={iFrameRef} id="printFrame" hidden="hidden"></iframe>
