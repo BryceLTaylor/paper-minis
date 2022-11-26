@@ -7,3 +7,7 @@ div.box {
 .app {
   background-color: rgb(214, 236, 251);
 }
+
+.spacer {
+  height: 70px;
+}

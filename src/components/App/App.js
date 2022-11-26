@@ -22,6 +22,7 @@ const App = (props) => {
       <PrintContext.Provider value={printList}>
         <Header></Header>
         <Tabs currentTab={tabSelected} switchTabs={changeTabs}></Tabs>
+        <div className="spacer"></div>
         {tabSelected === "browse" ? (
           <ErrorBoundary>
             <Browser></Browser>

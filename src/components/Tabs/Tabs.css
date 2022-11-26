@@ -1,8 +1,12 @@
 .tabs {
-  position: relative;
+  position: fixed;
   display: flex;
   flex-direction: row;
   padding-top: 3px;
+  top: 50px;
+  background-color: white;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
 }
 
 .tab {
