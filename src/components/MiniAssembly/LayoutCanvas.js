@@ -28,10 +28,6 @@ const LayoutCanvas = (props) => {
     setPrintCanvasHeight((spanRef.current.offsetWidth * 11) / 8.5);
   }, []);
 
-  //   useEffect(() => {
-  //     setupPrintStyleSheet();
-  //   }, []);
-
   imageList.set("missing", missingImage);
 
   const offCanvas = new OffscreenCanvas(2400, 3300);
@@ -42,9 +38,6 @@ const LayoutCanvas = (props) => {
   const spanRef = useRef(null);
 
   const iFrameRef = useRef(null);
-
-  const [printing, setPrinting] = useState(false);
-  const printCanvasRef = useRef(null);
   const [iFrameLoaded, setIFrameLoaded] = useState(false);
 
   let lineOffset = 3;
@@ -60,7 +53,6 @@ const LayoutCanvas = (props) => {
     let marginPixels = margin * pixelsPerInch;
 
     let miniLocation = { x: marginPixels, y: marginPixels };
-    // let imageDimensions = { x: 100, y: 100 };
 
     await printList.creatures.map(async (creature) => {
       let creatureSize = creature.creatureInfo.size;
@@ -114,12 +106,6 @@ const LayoutCanvas = (props) => {
     });
 
     await drawOffScreen(offCanvas, canvas);
-    // let frameObj = await document.getElementById("printFrame");
-    // console.log(frameObj);
-    // let frameDoc = frameObj.contentWindow.document;
-    // console.log(frameDoc);
-    // let printingCanvas = await frameDoc.getElementById("printCanvas");
-    // console.log(printingCanvas);
     let printingCanvas = await getPrintCanvas();
     console.log(printingCanvas);
     if (printingCanvas != null) {
@@ -277,11 +263,6 @@ const LayoutCanvas = (props) => {
 
   async function printMinis() {
     console.log(`print miniatures`);
-    // setPrinting(true);
-
-    // let printingCanvas = await getPrintCanvas();
-    // console.log(printingCanvas);
-    // await drawOffScreen(offCanvas, printingCanvas);
 
     let frameObj = await document.getElementById("printFrame");
     let win = frameObj.contentWindow;
@@ -294,14 +275,10 @@ const LayoutCanvas = (props) => {
     let frameObj = await document.getElementById("printFrame");
     let frameDoc = frameObj.contentWindow.document;
     let printingCanvas = await frameDoc.getElementById("printCanvas");
-    console.log(frameDoc);
     return printingCanvas;
   }
 
-  function setupPrintStyleSheet() {}
-
   /* full size is 2400 x 3300 */
-  // test
 
   return (
     <div>
