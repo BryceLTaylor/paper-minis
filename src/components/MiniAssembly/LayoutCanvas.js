@@ -307,7 +307,6 @@ const LayoutCanvas = (props) => {
         ref={iFrameRef}
         id="printFrame"
         width="2400"
-        height="3300"
         size="2400px 3300px;"
         src={printCanvasHTML}
         hidden="hidden"
